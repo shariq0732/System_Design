@@ -1,5 +1,5 @@
-System Desing
+System Design
 
 
 Starting with Design Patterns
-Added the Singleton, Factory & AbsFactoryDesign Pattern. it is complete and simple code.
+Added the Singleton, Factory & AbstractFactoryDesign Pattern. it is complete and simple code.
