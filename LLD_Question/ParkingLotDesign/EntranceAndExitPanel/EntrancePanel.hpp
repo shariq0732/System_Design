@@ -4,35 +4,21 @@
 
 #include <iostream>
 #include "Gate.hpp"
-#include "../ParkingLot/ParkingLot.cpp"
-#include "../VehicleFactory/Vehicle.hpp"
 #include "../ticket/TicketService.hpp"
+#include "../VehicleFactory/VehicleFactory.hpp"
 using namespace std;
+
+class ParkingLot;
 
 class EntrancePanel:public Gate
 {
     ParkingLot *parkingLot;
     TicketService *ticketService;
 
+    Ticket* ParkVehicleAndGenerateTicke(Vehicle* vehicle);
     public:
-    
-        EntrancePanel(int gateId): Gate(gateId) {
-            parkingLot = ParkingLot::getInstance();
-        }
-
-
-        bool canPark(Vehicle* vehicle)
-        {
-            return this->parkingLot->canPark(vehicle);
-        }
-
-        
-        Ticket* ParkVehicleAndGenerateTicke(Vehicle* vehicle)
-        {
-            pair<pair<int,int>,int> floorAndSpotNo = this->parkingLot->parkVehicle(vehicle);
-            return ticketService->GenerateTicket(floorAndSpotNo.first.first, floorAndSpotNo.first.second, floorAndSpotNo.second, vehicle);
-        }
-
+        EntrancePanel(int gateId);
+        Ticket* ProcessEntrance();
 };
 
 #endif

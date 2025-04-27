@@ -2,6 +2,7 @@
 #define TICKETSERVICE_H
 
 #include "Ticket.hpp"
+#include <vector>
 #include <mutex>
 
 class TicketService
@@ -9,43 +10,22 @@ class TicketService
     static TicketService* ticketService;
     static int ticketCounter;
     static mutex mt;
-    
-    TicketService() {}
-    ~TicketService() {}
-    public:
-
+    vector<Ticket> ticketHistory;
+    TicketService();
+    ~TicketService();
     TicketService(const TicketService&) = delete;
     TicketService& operator=(const TicketService&) = delete;
     TicketService(TicketService&&) = delete;
-    TicketService& operator=(const TicketService&) = delete;
+    TicketService& operator=(TicketService&&) = delete;
+    public:
 
 
-    static TicketService* getInstance()
-    {
-        if(nullptr  == ticketService)
-        {
-            mt.lock();
-            if(nullptr == ticketService)
-            {
-                ticketService =  new TicketService();
-            }
-        }
-        return ticketService;
-    }
-
-    void removeInstance()
-    {
-        delete this->ticketService;
-    }
-
-    Ticket* GenerateTicket(int floorNo, int spNo, int price, Vehicle *vehicle)
-    {
-        this->ticketCounter++;
-        string ticketId = "TICKET " + to_string(this->ticketCounter);
-        return new Ticket(ticketId, floorNo, spNo, price, vehicle);
-    }
+    static TicketService* getInstance();
+    void removeInstance();
+    Ticket* GenerateTicket(int floorNo, int spNo, int price, Vehicle *vehicle);
+    void addTicket(Ticket ticket);
+    void viewTicketHistory();
+    Ticket* getTicketById(string ticketId);
 };
 
-int TicketService::ticketCounter = 0;
-mutex TicketService::mt;
 #endif

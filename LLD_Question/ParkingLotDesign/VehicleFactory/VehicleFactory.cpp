@@ -1,19 +1,13 @@
-#include "Bike.hpp"
-#include "Car.hpp"
-#include "Truck.hpp"
+#include "VehicleFactory.hpp"
 
-class VehicleFactory
+VehicleFactory::VehicleFactory() {}
+
+Vehicle* VehicleFactory::getVehicle(string vehicleName, string regNo)
 {
-
-    public:
-
-        static Vehicle* getVehicle(string vehicleName, string regNo)
-        {
-            if("Bike" == vehicleName)
-                return new Bike(regNo);
-            else if("Car" == vehicleName)
-                return new Car(regNo);
-            else
-                return new Truck(regNo);
-        }
-};
+    if("Bike" == vehicleName)
+        return new Bike(regNo);
+    else if("Car" == vehicleName)
+        return new Car(regNo);
+    else
+        return new Truck(regNo);
+}

@@ -16,55 +16,16 @@ class ParkingSpot
     SpotType spotType;
 
     public:
-        ParkingSpot() {}
-        ParkingSpot(int theSpotNo, int theFloorNo, bool theIsOccupied, int thePrice, SpotType theSpotType, Vehicle *theVehicle = nullptr) :
-                    spotNo(theSpotNo), floorNo(theFloorNo), isOccupied(theIsOccupied), price(thePrice), spotType(theSpotType), vehicle(theVehicle) { }
-        
-        ParkingSpot(const ParkingSpot& theParkingSpot)
-        {
-            this->floorNo = theParkingSpot.floorNo;
-            this->spotNo = theParkingSpot.spotNo;
-            this->isOccupied = theParkingSpot.isOccupied;
-            this->vehicle = theParkingSpot.vehicle;
-            this->price = theParkingSpot.price;
-            this->spotType = theParkingSpot.spotType;
-        }
-
-        void parkVehicle(Vehicle* vehicle)
-        {
-            this->vehicle = vehicle;
-            this->isOccupied = true;
-        }
-
-        int getSpotNo(){
-            return this->spotNo;
-        }
-        
-        int getFloorId()
-        {
-            return this->floorNo;
-        }
-
-        void setPrice(int thePrice)
-        {
-            this->price = thePrice;
-        }
-
-        bool getIsOccupied()
-        {
-            return this->isOccupied;
-        }
-
-        void vaccate()
-        {
-            this->isOccupied = false;
-            delete this->vehicle;
-        }
-
-        int getPrice()
-        {
-            return this->price;
-        }
+        ParkingSpot();
+        ParkingSpot(int theSpotNo, int theFloorNo, bool theIsOccupied, int thePrice, SpotType theSpotType, Vehicle *theVehicle = nullptr);
+        ParkingSpot(const ParkingSpot& theParkingSpot);
+        void parkVehicle(Vehicle* vehicle);
+        int getSpotNo();
+        int getFloorId();
+        void setPrice(int thePrice);
+        bool getIsOccupied();
+        void vaccate();
+        int getPrice();
 };
 
 #endif

@@ -8,15 +8,8 @@ class PaymentService
     PaymentStrategy *paymentSt;
     public:
 
-        PaymentService(): paymentSt(nullptr) {}
-        PaymentService(PaymentStrategy *thePaymentSt): paymentSt(thePaymentSt) { }
-
-        void ProcessPayment(int totalAmount)
-        {
-            this->paymentSt->makePayment(totalAmount);
-        }
-
-        ~PaymentService() {
-            delete paymentSt;
-        }
+        PaymentService();
+        PaymentService(PaymentStrategy *thePaymentSt);
+        void ProcessPayment(double totalAmount);
+        ~PaymentService();
 };

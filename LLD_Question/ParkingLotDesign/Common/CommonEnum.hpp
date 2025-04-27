@@ -15,4 +15,11 @@ enum SpotType
     LARGE
 };
 
+enum AccountType
+{
+    ADMIN,
+    OPERATOR,
+    USER
+};
+
 #endif
